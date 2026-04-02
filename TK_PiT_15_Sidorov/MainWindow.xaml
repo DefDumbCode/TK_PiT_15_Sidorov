@@ -1,0 +1,67 @@
+﻿<Window x:Class="TK_PiT_15_Sidorov.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TK_PiT_15_Sidorov"
+        mc:Ignorable="d"
+        Title="Стоимость проезда железнодорожным транспортом"
+        Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Расстояние (км)" HorizontalAlignment="Left"
+                   FontSize="16"
+                   Height="35" Width="150" Margin="10"/>
+            <TextBox x:Name="RangeTB" Grid.Column="1"
+                       Height="35" Width="150" Margin="10"/>
+            <Label Content="Количество билетов" HorizontalAlignment="Left"
+                   FontSize="16"
+                   Height="35" Width="170" Margin="10" Grid.Row="1"/>
+            <TextBox x:Name="AmountTB" Grid.Row="1" Grid.Column="1"
+                       Height="35" Width="150" Margin="10"/>
+        </Grid>
+
+        <StackPanel Orientation="Vertical" Grid.Column="1" Margin="20">
+            <Label Content="Комфортабельность" FontSize="20" Margin="0 0 0 10"/>
+            <RadioButton Content="плацкарт" FontSize="16"
+                         Checked="RadioButton_Checked" IsChecked="True"/>
+            <RadioButton Content="купе" FontSize="16"
+                         Checked="RadioButton_Checked"/>
+            <RadioButton Content="полулюкс" FontSize="16"
+                         Checked="RadioButton_Checked"/>
+            <RadioButton Content="люкс" FontSize="16"
+                         Checked="RadioButton_Checked"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row ="1" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                   Text="Стоимость билетов с учётом кофортабельности" TextWrapping="Wrap"
+                   FontSize="20" 
+                   Width="200" Margin="10"/>
+        <TextBlock x:Name="PriceTB" Grid.Row="1" HorizontalAlignment="Right"
+                   FontSize="16" TextWrapping="Wrap"
+                   Width="150" Height="35"/>
+
+        <Button x:Name="OrderBtn" Grid.Row="1" Grid.Column="1"
+                HorizontalAlignment="Left" Content="Вычислить"
+                FontSize="16"
+                Click="OrderBtn_Click"
+                Width="150" Height="50" Margin="30 0"/>
+    </Grid>
+</Window>
