@@ -28,30 +28,12 @@ namespace TK_PiT_15_Sidorov
 
         private void OrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrEmpty(RangeTB.Text) && !String.IsNullOrEmpty(AmountTB.Text))
+            if (IsValidInput(RangeTB.Text, AmountTB.Text))
             {
-                double range;
-                int amount;
-                if (Double.TryParse(RangeTB.Text, out range) && int.TryParse(AmountTB.Text, out amount))
-                {
-                    if (range > 0 && amount > 0)
-                    {
-                        double res = CalculatePrice(range, amount, comf);
-                        PriceTB.Text = res.ToString() + "руб.";
-                    }
-                    else
-                    {
-                        MessageBox.Show("Расстояние и количество билетов должны быть положительыми");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Введены неправильные значения");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Введены пустые значения");
+                double range = Double.Parse(RangeTB.Text);
+                int amount = int.Parse(AmountTB.Text);
+                double res = CalculatePrice(range, amount, comf);
+                PriceTB.Text = res.ToString() + "руб.";
             }
         }
 
@@ -86,6 +68,43 @@ namespace TK_PiT_15_Sidorov
             }
             price *= mult;
             return price;
+        }
+
+        /// <summary>
+        /// Определяет валидность введенных значений
+        /// </summary>
+        /// <param name="range_">Введенное расстояние</param>
+        /// <param name="amount_">Введенное количество билетов</param>
+        /// <returns>Булево значение, означающее валидность введенных параметров</returns>
+        public bool IsValidInput(string range_, string amount_)
+        {
+            if (!String.IsNullOrEmpty(range_) && !String.IsNullOrEmpty(amount_))
+            {
+                double range;
+                int amount;
+                if (Double.TryParse(range_, out range) && int.TryParse(amount_, out amount))
+                {
+                    if (range > 0 && amount > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Расстояние и количество билетов должны быть положительыми");
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Введены неправильные значения");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Введены пустые значения");
+                return false;
+            }
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
